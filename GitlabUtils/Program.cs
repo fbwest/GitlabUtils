@@ -22,13 +22,16 @@ internal static class Program
         Console.WriteLine($" {projects.Count} found");
         Console.WriteLine($"Looking for branch '{TargetBranch}':");
 
-        const string stuff = "                                                                                        ";
         foreach (var (project, index) in projects.OrderBy(p => p.Id).Select((p, i) => (p, i)))
         {
-            Console.Write($"{index + 1} | {project.Name} (ID: {project.Id}){stuff}");
+            Console.Write($"{index + 1} | {project.Name} (ID: {project.Id})");
             Console.CursorLeft = 0;
-            if (!await BranchExistsAsync(project.Id, TargetBranch)) continue;
-            Console.WriteLine($"Found in project: {project.Name} (ID: {project.Id})");
+            if (await BranchExistsAsync(project.Id, TargetBranch))
+            {
+                Console.WriteLine($"Found in project: {project.Name} (ID: {project.Id})");
+            }
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.CursorLeft = 0;
         }
     }
 
