@@ -76,7 +76,8 @@ internal static class Program
     {
         var conf =  new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .AddJsonFile("appsettings_dev.json", optional: true, reloadOnChange: true)
             .Build();
 
         var baseUrl = conf["GitLabConfig:BaseUrl"];
