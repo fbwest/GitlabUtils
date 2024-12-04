@@ -81,14 +81,14 @@ internal static class Program
             .Build();
 
         var baseUrl = conf["GitLabConfig:BaseUrl"];
-        var privateToken = conf["GitLabConfig:PrivateToken"];
-        if (string.IsNullOrEmpty(baseUrl) || string.IsNullOrEmpty(privateToken))
+        var token = conf["GitLabConfig:AccessToken"];
+        if (string.IsNullOrEmpty(baseUrl) || string.IsNullOrEmpty(token))
         {
-            Console.WriteLine("Wrong git lab configuration");
+            Console.WriteLine("Wrong Gitlab configuration");
             Environment.Exit(1);
         }
         
-        return (baseUrl, privateToken);
+        return (baseUrl, token);
     }
 
     private class Project
